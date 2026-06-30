@@ -25,7 +25,7 @@ const Signup = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post('http://localhost:4000/api/v1/user/register', input, {
+            const res = await axios.post('https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/user/register', input, {
                 headers: {
                     'Content-Type': 'application/json'
                 },

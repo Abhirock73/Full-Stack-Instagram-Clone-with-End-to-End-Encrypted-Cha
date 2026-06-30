@@ -93,7 +93,7 @@ function App() {
           console.error("REAL ERROR:", err);
         }
       })();
-      const socketio = io('http://localhost:4000', {
+      const socketio = io('https://full-stack-instagram-clone-with-end-to.onrender.com', {
         query: {
           userId: user?._id
         },

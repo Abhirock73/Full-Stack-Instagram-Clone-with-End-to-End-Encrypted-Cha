@@ -407,7 +407,7 @@ const ChatPage = () => {
             }
 
             // 5. Send to backend
-            const res = await axios.post(`http://localhost:4000/api/v1/message/send/${receiverId}`, payload, {
+            const res = await axios.post(`https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/message/send/${receiverId}`, payload, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
             });
@@ -540,140 +540,6 @@ const ChatPage = () => {
         </div>
     )
 }
-// const ChatPage = () => {
-//     const [textMessage, setTextMessage] = useState("");
-//     const [selectedImage, setSelectedImage] = useState(null);
-//     const [imagePreview, setImagePreview] = useState(null);
-//     const imageInputRef = useRef(null);
 
-//     const { user, suggestedUsers, selectedUser } = useSelector(store => store.auth);
-//     const { onlineUsers, messages } = useSelector(store => store.chat);
-//     const dispatch = useDispatch();
-
-//     const handleImageChange = (e) => {
-//         const file = e.target.files[0];
-//         if (!file) return;
-//         const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-
-//         if (file.size > MAX_FILE_SIZE) {
-//             alert("Image is too large! Please select an image smaller than 5MB.");
-//             removeImage();
-//             return;
-//         }
-//         setSelectedImage(file);
-//         setImagePreview(URL.createObjectURL(file));
-//     };
-
-//     const removeImage = () => {
-//         setSelectedImage(null);
-//         setImagePreview(null);
-//         if (imageInputRef.current) imageInputRef.current.value = "";
-//     };
-
-//     const sendMessageHandler = async (receiverId) => {
-//         try {
-//             const text = textMessage.trim();
-//             if (!text && !selectedImage) return;
-
-//             const receiverPublicKeyString = await fetchPublicKey(receiverId);
-//             const senderPublicKeyString = await fetchPublicKey(user._id);
-//             const receiverPublicKey = await importPublicKey(receiverPublicKeyString);
-//             const senderPublicKey = await importPublicKey(senderPublicKeyString);
-
-//             let payload = {
-//                 senderEncryptedMsg: "",
-//                 receiverEncryptedMsg: ""
-//             };
-//             let localImageUrl = null;
-
-//             if (text) {
-//                 payload.receiverEncryptedMsg = await encryptMessage(text, receiverPublicKey);
-//                 payload.senderEncryptedMsg = await encryptMessage(text, senderPublicKey);
-//             }
-
-//             if (selectedImage) {
-//                 const arrayBuffer = await selectedImage.arrayBuffer();
-//                 const aesKey = await generateSymmetricKey();
-//                 const { encryptedFileBase64, ivBase64 } = await encryptFile(arrayBuffer, aesKey);
-//                 const aesKeyString = await exportSymmetricKey(aesKey);
-
-//                 payload.encryptedImage = encryptedFileBase64;
-//                 payload.imageIv = ivBase64;
-//                 payload.receiverEncryptedAesKey = await encryptMessage(aesKeyString, receiverPublicKey);
-//                 payload.senderEncryptedAesKey = await encryptMessage(aesKeyString, senderPublicKey);
-//                 localImageUrl = imagePreview;
-//             }
-
-//             const res = await axios.post(`http://localhost:4000/api/v1/message/send/${receiverId}`, payload, {
-//                 headers: { 'Content-Type': 'application/json' },
-//                 withCredentials: true
-//             });
-
-//             if (res.data.success) {
-//                 const newMsgObj = { ...res.data.newMessage, message: text, imageUrl: localImageUrl };
-//                 dispatch(setMessages([...messages, newMsgObj]));
-//                 dispatch(setMessageNotification(newMsgObj));
-//                 setTextMessage("");
-//                 removeImage();
-//             }
-//         } catch (error) {
-//             console.error("Error sending message:", error);
-//         }
-//     }
-
-//     useEffect(() => { return () => { dispatch(setSelectedUser(null)); } }, [dispatch]);
-
-//     return (
-//         <div className='flex w-full h-screen overflow-hidden'>
-//             {/* Sidebar: Hidden on mobile (w-0), full width on mobile if no user selected, md:w-1/4 on desktop */}
-//             <section className={`${selectedUser ? 'hidden md:flex' : 'flex'} w-full md:w-1/4 h-full border-r border-gray-300 flex-col`}>
-//                 <h1 className='font-bold p-4 text-xl'>{user?.username}</h1>
-//                 <hr className='border-gray-300' />
-//                 <div className='flex-1 overflow-y-auto'>
-//                     {suggestedUsers.map((sUser) => (
-//                         <div key={sUser?._id} onClick={() => dispatch(setSelectedUser(sUser))} className='flex gap-3 items-center p-4 hover:bg-gray-50 cursor-pointer'>
-//                             <Avatar><AvatarImage src={sUser?.profilePicture} /><AvatarFallback>{sUser?.username[0].toUpperCase()}</AvatarFallback></Avatar>
-//                             <div className='flex flex-col'><span className='font-medium'>{sUser?.username}</span></div>
-//                         </div>
-//                     ))}
-//                 </div>
-//             </section>
-
-//             {/* Chat Area: Hidden on mobile if no user selected */}
-//             <section className={`${selectedUser ? 'flex' : 'hidden md:flex'} flex-1 flex-col h-full bg-white`}>
-//                 {selectedUser ? (
-//                     <>
-//                         <div className='p-4 border-b border-gray-300 flex items-center gap-3'>
-//                             <Button className="md:hidden" onClick={() => dispatch(setSelectedUser(null))}>Back</Button>
-//                             <Avatar><AvatarImage src={selectedUser?.profilePicture} /></Avatar>
-//                             <span>{selectedUser?.username}</span>
-//                         </div>
-                        
-//                         <Messages selectedUser={selectedUser} />
-
-//                         {imagePreview && (
-//                             <div className="p-3 border-t bg-gray-50 flex items-center gap-2">
-//                                 <img src={imagePreview} className="h-12 w-12 object-cover rounded" />
-//                                 <button onClick={removeImage} className="text-red-500">Remove</button>
-//                             </div>
-//                         )}
-
-//                         <div className='p-4 border-t flex items-center gap-2'>
-//                             <input type="file" className="hidden" ref={imageInputRef} onChange={handleImageChange} />
-//                             <Button variant="ghost" onClick={() => imageInputRef.current.click()}><ImageIcon size={24} /></Button>
-//                             <Input value={textMessage} onChange={(e) => setTextMessage(e.target.value)} placeholder="Type a message..." />
-//                             <Button onClick={() => sendMessageHandler(selectedUser?._id)}>Send</Button>
-//                         </div>
-//                     </>
-//                 ) : (
-//                     <div className='hidden md:flex flex-col items-center justify-center flex-1'>
-//                         <MessageCircleCode className='w-20 h-20' />
-//                         <p>Select a user to start chatting</p>
-//                     </div>
-//                 )}
-//             </section>
-//         </div>
-//     )
-// }
 
 export default ChatPage;

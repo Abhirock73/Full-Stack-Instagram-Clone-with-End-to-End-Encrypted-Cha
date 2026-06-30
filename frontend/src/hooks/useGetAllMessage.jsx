@@ -110,7 +110,7 @@ const useGetAllMessage = () => {
         const fetchAllMessage = async () => {
             try {
                 const privateKey = await getPrivateKey();
-                const res = await axios.get(`http://localhost:4000/api/v1/message/all/${selectedUser?._id}`, { withCredentials: true });
+                const res = await axios.get(`https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/message/all/${selectedUser?._id}`, { withCredentials: true });
                 console.log("Fetched Messages:", res.data.messages); // Log the fetched messages for debugging
                 if (res.data.success) {
                     const decryptedMessages = await Promise.all(res.data.messages.map(async (msg) => {

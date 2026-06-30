@@ -33,7 +33,7 @@ const Profile = () => {
       console.log(userProfile?._id);
       console.log(user?._id);
 
-      const res = await fetch(`http://localhost:4000/api/v1/user/followorunfollow/${userProfile?._id}`, {
+      const res = await fetch(`https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/user/followorunfollow/${userProfile?._id}`, {
         method: 'POST',
         credentials: 'include'
       });
@@ -70,7 +70,7 @@ const Profile = () => {
       console.log(userProfile?._id);
       console.log(user?._id);
 
-      const res = await fetch(`http://localhost:4000/api/v1/user/followorunfollow/${userProfile?._id}`, {
+      const res = await fetch(`https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/user/followorunfollow/${userProfile?._id}`, {
         method: 'POST',
         credentials: 'include'
       });

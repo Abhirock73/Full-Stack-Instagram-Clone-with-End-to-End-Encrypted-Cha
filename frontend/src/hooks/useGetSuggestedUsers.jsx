@@ -9,7 +9,7 @@ const useGetSuggestedUsers = () => {
     useEffect(() => {
         const fetchSuggestedUsers = async () => {
             try {
-                const res = await axios.get('http://localhost:4000/api/v1/user/suggested', { withCredentials: true });
+                const res = await axios.get('https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/user/suggested', { withCredentials: true });
                 if (res.data.success) { 
                     dispatch(setSuggestedUsers(res.data.users));
                 }

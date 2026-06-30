@@ -327,7 +327,7 @@ const Messages = ({ selectedUser }) => {
                         return (
                             <div key={msg._id} className={`flex ${isSender ? 'justify-end' : 'justify-start'}`}>
                                 
-                                <div className={`p-2 rounded-lg max-w-xs break-words flex flex-col ${isSender ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>
+                                <div className={`p-2 rounded-lg max-w-xs wrap-break-words flex flex-col ${isSender ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>
                                     
                                     {/* 1. Render the decrypted image if it exists */}
                                     {msg.imageUrl && (

@@ -30,7 +30,7 @@ export async function initializeKeys() {
         console.log("Private key stored in IndexedDB.");
 
         await axios.post(
-            "http://localhost:4000/api/v1/user/public-key",
+            "https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/user/public-key",
             { publicKey },
             { withCredentials: true }
         );

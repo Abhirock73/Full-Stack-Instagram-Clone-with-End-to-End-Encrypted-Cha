@@ -10,7 +10,7 @@ const useGetUserProfile = (userId) => {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const res = await axios.get(`http://localhost:4000/api/v1/user/${userId}/profile`, { withCredentials: true });
+                const res = await axios.get(`https://full-stack-instagram-clone-with-end-to.onrender.com/api/v1/user/${userId}/profile`, { withCredentials: true });
                 if (res.data.success) { 
                     console.log(res.data.user);
                     
