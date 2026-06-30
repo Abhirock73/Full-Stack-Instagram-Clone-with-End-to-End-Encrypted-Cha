@@ -1,62 +1,57 @@
-# 🚀 Real-Time Social Media & Chat Application
+# 📸 Full-Stack Instagram Clone with End-to-End Encrypted Chat
 
-A full-stack **MERN + Socket.IO** application enabling real-time messaging, notifications, and social media interactions.
-
----
-
-## 📅 Timeline
-**Feb 2026**
+A production-inspired **Instagram Clone** built using the **MERN Stack** that combines modern social media functionality with secure real-time communication. The application supports **end-to-end encrypted text and image messaging** using **RSA-AES hybrid encryption**, ensuring that only intended recipients can decrypt conversations while the server stores only encrypted ciphertext.
 
 ---
 
-## 🌐 Live Demo
-https://social-media-clone-w49z.onrender.com
+## ✨ Features
 
----
-
-## 📌 Features
-
-- 🔐 **JWT Authentication**
-  - Secure login/signup using JWT & bcrypt
-  - Protected routes for authorized access
-
-- 💬 **Real-Time Chat**
-  - One-to-one messaging using Socket.IO
-  - Instant message delivery
-
-- 🔔 **Real-Time Notifications**
-  - Live updates for follows, likes, and messages
-
-- 🧑‍🤝‍🧑 **User System**
-  - Follow / Unfollow users
-  - User profiles
-
-- 📝 **Posts**
-  - Create, like, and comment on posts
-
-- ⚡ **State Management**
-  - Efficient global state using Redux Toolkit
-
-- 🔗 **REST APIs**
-  - Scalable backend APIs for users, posts, and messaging
+- 🔐 End-to-End Encrypted Chat (RSA + AES Hybrid Encryption)
+- 💬 Real-time Messaging with Socket.IO
+- 🖼️ Encrypted Image Sharing
+- ❤️ Like & Comment on Posts
+- 👥 Follow / Unfollow Users
+- 📝 Create & Delete Posts
+- 👤 User Profiles
+- 🔔 Real-time Notifications
+- 🔑 JWT Authentication & Protected Routes
+- 🔒 bcrypt Password Hashing
+- ⚡ Redux Toolkit for State Management
+- 📱 Responsive UI with Tailwind CSS
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - React.js
 - Redux Toolkit
 - Tailwind CSS
-- Axios
+- Socket.IO Client
 
 ### Backend
+
 - Node.js
 - Express.js
 - MongoDB
 - Socket.IO
-- JWT (Authentication)
-- bcrypt (Password hashing)
+- JWT Authentication
+- bcrypt
+
+### Security
+
+- RSA Public-Key Cryptography
+- AES Symmetric Encryption
+- Hybrid Encryption
+- PKI-style Public Key Management
 
 ---
 
+## 🔒 Security Highlights
+
+- End-to-end encryption for both **text** and **image** messages
+- Client-side encryption and recipient-side decryption
+- Server stores only encrypted ciphertext
+- JWT-based authentication and protected APIs
+- Secure password hashing using bcrypt
