@@ -13,11 +13,9 @@ A production-inspired **Instagram Clone** built using the **MERN Stack** that co
 - 👥 Follow / Unfollow Users
 - 📝 Create & Delete Posts
 - 👤 User Profiles
-- 🔔 Real-time Notifications
 - 🔑 JWT Authentication & Protected Routes
 - 🔒 bcrypt Password Hashing
 - ⚡ Redux Toolkit for State Management
-- 📱 Responsive UI with Tailwind CSS
 
 ---
 
